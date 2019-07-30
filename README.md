@@ -1,2 +1,2 @@
-# AtCoder2019
+# AtCoder
 AtCoder の解いた問題達です．
