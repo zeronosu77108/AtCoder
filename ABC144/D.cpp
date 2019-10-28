@@ -9,7 +9,6 @@
 
 using namespace std;
 
-
 int main() {
   long double a,b,x;
   long double ans;
@@ -22,6 +21,11 @@ int main() {
     ans = atan2(b, 2*x/b);
   } else {
     ans = atan2(2*(b-x/a), a);
+    // 反対側の三角形から高さを求める．
+    /*
+      h = 2*(a*b -x) / a
+        = 2*(b - x/a)
+    */
   }
 
   cout << setprecision(14) << ans * 180.0 / M_PI << endl;
