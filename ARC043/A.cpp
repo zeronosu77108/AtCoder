@@ -22,7 +22,7 @@ int main() {
     int64 diff = s.back() - s[0];
 
     long double p, q;
-    if (s.back() != s[0]) {
+    if (diff != 0) {
         p = b / diff;
         q = (a * n - sum * p) / n;
     } else {
