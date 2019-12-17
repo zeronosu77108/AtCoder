@@ -9,8 +9,15 @@
 #include <numeric>
 
 typedef long long int64;
-
 using namespace std;
+
+struct aaa {
+    aaa() {
+        cin.tie(0);
+        ios::sync_with_stdio(0);
+        cout << setprecision(20);
+    };
+} aaaaaaa;
 
 int main() {
     long double n, a, b;
@@ -30,6 +37,5 @@ int main() {
         return 0;
     }
 
-    std::cout << std::setprecision(14);
     cout << p << " " << q;
 }
