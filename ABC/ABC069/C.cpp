@@ -29,13 +29,8 @@ int main() {
         else div[0]++;
     }
 
-    bool ans = false;
-    ans = ans || div[2] == n;
-    ans = ans || (div[2] == 0 && div[4] >= div[0] - 1);
-    ans = ans || div[4] >= div[0];
-//    ans = ans || (n == 3 && div[4]>=1);
-
-
+    if (div[2] == 0) div[0]--;
+    bool ans = (div[2]==n) || (div[4]>=div[0]);
     cout << (ans? "Yes" : "No") << endl;
 }
 
