@@ -8,54 +8,42 @@
 
 using namespace std;
 
+using int64 = long long;
+
+int64 calc(int64 h, int64 w) {
+    int64 res = INT_MAX;
+
+    for (int i=1; i<h; i++) {
+        int64 a = i * w;
+
+        int64 rest_h = h - i;
+        {
+            int64 b = ceil(rest_h/2.0) * w;
+            int64 c = floor(rest_h/2.0) * w;
+
+            int64 s_max = max(a, max(b,c));
+            int64 s_min = min(a, min(b,c));
+            res = min(res, s_max - s_min);
+        }
+
+        {
+            int64 b = ceil(w/2.0) * rest_h;
+            int64 c = floor(w/2.0) * rest_h;
+            int64 s_max = max(a, max(b,c));
+            int64 s_min = min(a, min(b,c));
+            res = min(res, s_max - s_min);
+        }
+    }
+    return res;
+}
+
 int main() {
-  long long h,w;
-  long long ans = INT_MAX;
-  cin >> h >> w;
+    int64 h, w;
+    cin >> h >> w;
 
-  if (h%3==0 || w%3==0) {
-    puts("0");
-    return 0;
-  }
+    int64 ans = calc(h,w);
+    ans = min(ans, calc(w,h));
 
 
-  long long s = (long long)h*w;
-  {
-    long long tmp_h = h;
-    long long tmp_w = w;
-    long double goal = (long long)h*w/3.0;
-
-    long long preb = INT_MAX;
-    long long sep_h = 0;
-    for(long long i=1; i<=h; i++) {
-      long long s1 = i*h;
-      if (abs(goal-s1) < preb) {
-        preb = (goal - s1);
-        sep_h = i;
-      }
-    }
-    long long s1 = sep_h * tmp_w;
-    tmp_h -= sep_h;
-
-    {
-      long long s2 = round(tmp_w / 2.0) * tmp_h;
-      long long s3 = s - s1 - s2;
-
-      long long s_max = max(s1, max(s2, s3));
-      long long s_min = min(s1, min(s2, s3));
-      ans = min(ans, (s_max-s_min));
-    }
-
-    {
-      long long s2 = round(tmp_w / 2.0) * tmp_h;
-      long long s3 = s - s1 - s2;
-
-      long long s_max = max(s1, max(s2, s3));
-      long long s_min = min(s1, min(s2, s3));
-      ans = min(ans, (s_max-s_min));
-    }
-  }
-
-
-  cout << ans << endl;
+    cout << ans << endl;
 }
