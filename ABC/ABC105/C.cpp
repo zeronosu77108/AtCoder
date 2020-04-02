@@ -1,28 +1,24 @@
 #include <iostream>
-#include <vector>
-#include <utility>
-#include <map>
-#include <algorithm>
-#include <queue>
-#include <cmath>
 
 using namespace std;
 
 int main() {
-  int n;
-  cin >> n;
-  string ans;
-  while (n != 0) {
-    int r = abs(n%2);
-    n = (n-r) / -2;
-    ans += '0' + r;
-  }
-  if (ans == "") ans='0';
-  reverse(ans.begin(), ans.end());
-  cout << ans << endl;
+    int n;
+    cin >> n;
+
+    int i = 0;
+    string ans;
+    while (n != 0) {
+        if (n & 1) {
+            ans += "1";
+            if (i%2==0) n -= 1;
+            else n += 1;
+        }
+        else ans += "0";
+        n /= 2;
+        i++;
+    }
+    if (ans == "") ans = "0";
+    reverse(ans.begin(), ans.end());
+    cout << ans << endl;
 }
-
-/*
--9
-
-*/
