@@ -4,9 +4,9 @@
 using namespace std;
 
 int main() {
-    int s;
+    long long s;
     cin >> s;
-    int ans = INT_MAX;
+    long long ans = INT_MAX;
     
     while(s!=0) {
         ans = min(ans, abs(753 - s%1000));
