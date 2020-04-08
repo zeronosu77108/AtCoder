@@ -6,8 +6,9 @@ int main() {
     int x;
     cin >> x;
     if (x==3 || x==5 || x==7) {
-        cout << "Yes" << endl;
+        cout << "YES" << endl;
     } else {
-        cout << "No" << endl;
+        cout << "NO" << endl;
     }
 }
+
