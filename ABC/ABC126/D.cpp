@@ -1,38 +1,43 @@
 #include <iostream>
+#include <vector>
+#include <map>
 
 using namespace std;
+using int64 = long long;
+using V = vector<int>;
+using VV = vector<V>;
+using P = pair<int,int>;
 
-int main(void) {
-    int n;
-    int ans[100010];
-    bool f[100010];
-    for (int i=0; i<10000; i++) {
-        f[i] = false; ans[i] = 1;
+void dfs(const int& u, const int& p, const int64& d, const VV& g,  map<P,int64>& edges, vector<int64>& dist) {
+    if (dist[u] >= 0) return;
+    dist[u] = d;
+
+    for (auto v : g[u]) {
+        if (v == p) continue;
+        dfs(v,u,d+edges[P(u,v)], g, edges, dist);
     }
 
-    int u[100010],v[100010],w[100010];
-    
-    cin >> n;
-    
-    for (int i=0; i<n-1; i++) {
-        cin >> u[i] >> v[i] >> w[i];
-        if (w[i]%2 == 0) {
-            f[u[i]-1] = true;
-            f[v[i]-1] = true;
-        } else {
-            if ( ans[u[i]-1] != -1 && ans[v[i]-1] != -1 ) {
-                if ( ! f[u[i]-1] ) {
-                    ans[u[i]-1] = 0;
-                } else if ( ! f[v[i]-1] ) {
-                    ans[v[i]-1] = 0;
-                } 
-            }
-        }
-
-    }
-
-    for (int i=0; i<n; i++) {
-        cout << ans[i] << endl;
-    }
 }
 
+int main() {
+    int n;
+    cin >> n;
+
+    VV g(n+1);
+    map<P,int64> edges;
+    for (int i=0; i<n-1; i++) {
+        int u,v,w;
+        cin >> u >> v >> w;
+        g[u].push_back(v);
+        g[v].push_back(u);
+        edges[P(u,v)] = w;
+        edges[P(v,u)] = w;
+    }
+
+    vector<int64> dist(n+1,-1);
+    dfs(1, -1, 0, g, edges, dist);
+
+    for (int i=1; i<=n; i++) {
+        cout << dist[i] % 2 << endl;
+    }
+}
