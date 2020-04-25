@@ -15,12 +15,11 @@ const int mod = 1000000007;
 
 int main() {
   string s;
-  int dp[100005][13];
   cin >> s;
   int n = s.size();
   reverse(s.begin(),s.end());
-  cout << s << endl; 
 
+  vector<vector<int>> dp(n+1, vector<int>(13,0));
   int digit=1;
   dp[0][0] = 1;
   for(int i=0; i<n; i++) {
