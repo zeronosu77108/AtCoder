@@ -23,15 +23,14 @@ int main() {
     for (int i=0; i<n; i++) cin >> a[i];
 
     vector<int> dp(k+1, false);
-    dp[0] = false;
 
     for (int i=1; i<=k; i++) {
-        bool f1 = true;
+        bool f = true;
         for (auto ai : a) {
             if (i < ai) continue;
-            f1 &= dp[i - ai];
+            f &= dp[i - ai];
         }
-        if (!f1) dp[i] = true;
+        dp[i] = !f;
     }
 
     cout << (dp[k]? "First" : "Second") << endl;
