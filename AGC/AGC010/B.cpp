@@ -20,20 +20,16 @@ int main() {
     long m = asum / (n*(n+1)/2);
 
     vector d(n, 0L);
-    for (int i=0; i<n; i++) d[i] = a[(i+1) % n] - a[i];
+    for (int i=0; i<n; i++) d[i] = a[(i+1) % n] - a[i] - m;
 
     bool ans = true;
     long c = 0;
     for (auto di : d) {
-        if (abs(di - m) % n != 0) {
+        if (di > 0 || di%n != 0) {
             ans = false;
             break;
         }
-
-        c += abs(di - m) / n;
     }
-
-    ans &= c <= m;
 
     cout << (ans? "YES" : "NO") << endl;
 }
