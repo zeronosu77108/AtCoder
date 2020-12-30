@@ -12,8 +12,7 @@ int main() {
     long n;
     cin >> n;
 
-    long ans = 0;
-    for (long i=1; i<=n; i++) ans += i*(i+1)/2;
+    long ans = n*(n+1)*(n+2) / 6;
 
     // 全組合せから u-v が採用される範囲分引く
     // → 1,2,3,u と v,v+1,...,n までの範囲は u-v が採用される
